@@ -1,0 +1,165 @@
+
+  
+
+
+   <div class="w-full h-screen flex justify-center items-center flex-col bg-gray-100 overflow-hidden">
+    <h1 class="font-serif font-semibold text-xl justify-start mr-[552px]" style="margin-right: 602px;">Add Employee</h1>
+    <div class="w-[50rem] bg-orange-50 h-[38rem] p-8 rounded-lg shadow-md">
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="flex justify-between gap-8 mb-3">
+          <div class="flex flex-col flex-1">
+            <label for="FirstName" class="font-semibold">First Name:</label>
+            <input
+              type="text"
+              formControlName="firstName"
+              class="border border-gray rounded p-2"
+              placeholder="Enter First Name"
+              [pattern]="namePattern"
+              [ngClass]="{'error': employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.touched || employeeForm.get('firstName')?.dirty)}"
+            />
+           
+
+
+            <div *ngIf="employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.touched || employeeForm.get('firstName')?.dirty)" class="text-red-500">
+                <div *ngIf="employeeForm.get('firstName')?.errors?.['required']">First Name is required.</div>
+                <div *ngIf="employeeForm.get('firstName')?.errors?.['pattern']">Only alphabets are allowed.</div>
+            </div>
+          </div>
+
+
+
+          
+
+
+
+          <div class="flex flex-col flex-1">
+            <label for="LastName" class="font-semibold">Last Name:</label>
+            <input
+              type="text"
+              formControlName="lastName"
+              class="border border-gray rounded p-2"
+              placeholder="Enter Last Name"
+              [pattern]="namePattern"
+              [ngClass]="{'error': employeeForm.get('lastName')?.invalid && (employeeForm.get('lastName')?.touched || employeeForm.get('lastName')?.dirty)}"
+            />
+            <div *ngIf="employeeForm.get('lastName')?.invalid && (employeeForm.get('lastName')?.touched || employeeForm.get('lastName')?.dirty)" class="text-red-500">
+                <div *ngIf="employeeForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+                <div *ngIf="employeeForm.get('lastName')?.errors?.['pattern']">Only alphabets are allowed.</div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex justify-between gap-8 mb-3">
+            <div class="flex flex-col flex-1">
+                <label for="email" class="font-semibold">Email:</label>
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="border border-gray rounded p-2"
+                  placeholder="Enter Email"
+                  [ngClass]="{'error': employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)}"
+                />
+                <div *ngIf="employeeForm.get('email')?.invalid && (employeeForm.get('email')?.touched || employeeForm.get('email')?.dirty)" class="text-red-500">
+                  <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="employeeForm.get('email')?.errors?.['pattern']">Please enter a valid Email</div>
+                </div>
+              </div>
+            
+
+
+          <div class="flex flex-col flex-1">
+            <label for="salary" class="font-semibold">Salary:</label>
+            <input
+              type="number"
+              formControlName="salary"
+              class="border border-gray rounded p-2"
+              placeholder="Enter Salary"
+              min="0"
+              max="1000000000"
+              [ngClass]="{'error': employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.touched || employeeForm.get('salary')?.dirty)}"
+            />
+            <div *ngIf="employeeForm.get('salary')?.invalid && (employeeForm.get('salary')?.touched || employeeForm.get('salary')?.dirty)" class="text-red-500">
+              <div *ngIf="employeeForm.get('salary')?.errors?.['required']">Salary is required.</div>
+              <div *ngIf="employeeForm.get('salary')?.errors?.['min']">Salary must be a positive number.</div>
+            </div>
+          </div>
+          
+        </div>
+  
+        <div class="flex justify-between gap-8 mb-3">
+          <div class="flex flex-col flex-1">
+            <label for="department" class="font-semibold">Department:</label>
+            <select
+              formControlName="departmentId"
+              class="border border-gray rounded p-2"
+            >
+              <option value="">Select Department</option>
+              <option *ngFor="let department of departmentList" [value]="department.id">
+                {{ department.name }}
+              </option>
+            </select>
+            <div *ngIf="employeeForm.get('departmentId')?.invalid && employeeForm.get('departmentId')?.touched" class="text-red-500">
+              Department is required.
+            </div>
+          </div>
+  
+
+
+
+          <div class="flex flex-col flex-1">
+            <label for="dateOfBirth" class="font-semibold">DOB:</label>
+            <input
+              type="date"
+              formControlName="dateOfBirth"
+              class="border border-gray rounded p-2"
+              [max]="maxDate" 
+            />
+            <div *ngIf="employeeForm.get('dateOfBirth')?.invalid && (employeeForm.get('dateOfBirth')?.touched || employeeForm.get('dateOfBirth')?.dirty)" class="text-red-500">
+              <div *ngIf="employeeForm.get('dateOfBirth')?.errors?.['required']">Date of birth is required.</div>
+              <div *ngIf="employeeForm.get('dateOfBirth')?.errors?.['ageInvalid']">Age must be 18 years or more.</div>
+            </div>
+          </div>
+          
+          
+        </div>
+  
+        <div class="flex flex-col mb-3">
+          <label for="address1" class="font-semibold">Address 1:</label>
+          <textarea
+            formControlName="address1"
+            rows="1"
+            class="border border-gray rounded w-full p-2"
+          ></textarea>
+          <div *ngIf="employeeForm.get('address1')?.invalid && employeeForm.get('address1')?.touched" class="text-red-500">
+            Address 1 is required.
+          </div>
+        </div>
+  
+        <div class="flex flex-col mb-3">
+          <label for="address2" class="font-semibold">Address 2:</label>
+          <textarea
+            formControlName="address2"
+            rows="1"
+            class="border border-gray rounded w-full p-2"
+          ></textarea>
+        </div>
+  
+        <div class="flex justify-start gap-4 mt-2">
+          <button
+            type="button"
+            class="text-white px-6 py-2 rounded shadow-md bg-red-500"
+            (click)="onCancelAddEmployee()"
+          >
+            Back
+          </button>
+          <button
+            type="submit"
+            class="bg-green-600 text-white px-6 py-2 rounded shadow-md"
+            [disabled]="employeeForm.invalid"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

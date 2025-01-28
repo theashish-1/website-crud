@@ -1,0 +1,40 @@
+<div class="w-full h-screen flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-500">
+    <form class="bg-white shadow-md rounded-lg px-8 py-6 w-96">
+        <h1 class="text-3xl font-bold text-center mb-4 text-black">EMPLOYEES APP</h1>
+        
+        <p class="text-center text-xs text-gray-500 mb-6">Enter your credentials to access your account</p>
+        <div class="flex flex-col mb-4">
+            <label for="email" class="text-gray-700 font-semibold mb-1">Email</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="userName" 
+                placeholder="Enter your email" 
+                class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                [(ngModel)]="employeeObj.userName" 
+            />
+        </div>
+        <div class="flex flex-col mb-6">
+            <label for="password" class="text-gray-700 font-semibold mb-1">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="Enter your password" 
+                class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                [(ngModel)]="employeeObj.password" 
+            />
+            <span class="text-red-500 font-bold" *ngIf="isValid === false">Invalid Credentials </span>
+        </div>
+        <button 
+            type="button" 
+            (click)="onSubmit()" 
+            class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 w-full rounded-md">
+            SIGN IN
+        </button>
+        <!-- <p class="text-center mt-4 text-sm text-gray-600">
+            Forgot your password? 
+            <a href="#" class="text-yellow-600 font-semibold hover:underline">Reset Password</a>
+        </p> -->
+    </form>
+</div>

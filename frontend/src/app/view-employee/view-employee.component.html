@@ -1,0 +1,110 @@
+<!-- responsive code  -->
+<div class="flex flex-col lg:flex-row h-screen">
+  <app-side-bar class="w-full lg:w-1/5 bg-[#f8f1e7]" [isAdmin]="isAdmin"></app-side-bar>
+
+  <div class="flex flex-col w-full">
+    <app-nav-bar class="w-full"></app-nav-bar>
+
+    <div class="flex flex-col w-full lg:h-[120vh] py-2 px-1 space-y-4">
+      
+      <ng-container *ngIf="isListVisible; else formContainer">
+        <!-- employee list -->
+        <div class="flex flex-col lg:flex-row justify-between items-center mb-6" *ngIf="isAdmin">
+          <h1 class="text-2xl font-bold text-gray-800 mb-4 lg:mb-0">Employee List</h1>
+
+          
+          <div class="flex items-center bg-white px-4 py-2 rounded-lg shadow-md w-full lg:w-auto">
+            <input
+              type="text"
+              placeholder="Search..."
+              class="text-sm text-gray-600 placeholder-gray-400  w-full lg:w-auto outline-none"
+              [(ngModel)]="searchQuery"
+              (input)="filterEmployees()"
+            />
+            <span class="material-icons text-pink-500 ml-2 cursor-pointer">search</span>
+          </div>
+          
+          <div class="flex flex-row justify-between gap-4 mt-4 lg:mt-0">
+            <button
+              class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-md shadow-md transition duration-200"
+              (click)="addEmployee()">
+              Add Employee
+            </button>
+            <button
+              class="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-md shadow-md transition duration-200"
+              (click)="deleteEmployees()">
+              Delete Employees
+            </button>
+          </div>
+        </div>
+
+        
+        <div class="overflow-x-auto">
+          <table class="w-full border-separate border-spacing-y-2 text-center" >
+            <thead class="bg-gray-100 text-gray-700">
+              <tr>
+                <th class="px-4 py-2">
+                  <input type="checkbox" class="w-4 h-4" [disabled]="!isAdmin" (change)="selectAllEmployees($event)" />
+                </th>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Salary</th>
+                <th class="px-4 py-2">Department</th>
+                <th class="px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of filteredEmployees" class="bg-white shadow-md rounded-lg" (click)="viewEmployeeDetails(employee, $event)" >
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="w-4 h-4" [disabled]="!isAdmin" [(ngModel)]="employee.selected" />
+                </td>
+                <td class="px-4 py-3">{{ employee.firstName }} {{ employee.lastName }}</td>
+                <td class="px-4 py-3">{{ employee.email }}</td>
+                <td class="px-4 py-3">{{ employee.salary }}</td>
+                <td class="px-4 py-3">{{ employee.departmentName }}</td>
+                <td class="px-4 py-3 flex justify-center space-x-4">
+                  <button class="text-yellow-500 hover:text-yellow-600 transition duration-200" 
+                          (click)="editEmployee(employee.id , $event)" 
+                          [disabled]="!isAdmin" 
+                          [ngClass]="{'text-yellow-500 hover:text-yellow-600': isAdmin, 'text-gray-400': !isAdmin}">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="transition duration-200"
+                          (click)="deleteEmployee(employee.id , $event)" 
+                          [disabled]="!isAdmin" 
+                          [ngClass]="{'text-yellow-500 hover:text-yellow-600': isAdmin, 'text-gray-400': !isAdmin}">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <mat-paginator 
+          
+  [length]="totalEmployees"
+  [pageSize]="pageSize"
+  [pageSizeOptions]="[6, 10, 20]"
+  (page)="onPaginatorChange($event)">
+</mat-paginator>
+
+
+        </div>
+      </ng-container>
+
+      <ng-template #formContainer>
+        <ng-container *ngIf="!selectedEmployeeId; else editEmployeeForm">
+          <app-add-employee (employeeAdded)="onEmployeeAdded($event)" (cancel)="onCancelAddEmployee()"></app-add-employee>
+        </ng-container>
+        <ng-template #editEmployeeForm>
+          <app-edit-employee [isListVisibleEdit]="isListVisible" (employeeEdited)="onEmployeeEdited($event)" [employeeId]="selectedEmployeeId" (cancel)="onCancelEditEmployee()"></app-edit-employee>
+        </ng-template>
+      </ng-template>
+
+      <app-pop-up *ngIf="selectedEmployee" 
+                  [employee]="selectedEmployee" 
+                  (closeModal)="closeModal()"></app-pop-up>
+
+    </div>
+  </div>
+</div>
+<!-- end of responsive code  -->

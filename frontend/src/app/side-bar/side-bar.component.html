@@ -1,0 +1,189 @@
+<!-- <div class="bg-[#f8f1e7] w-64 h-[112vh] px-6 py-8 flex flex-col items-center">
+    <h1 class="text-lg font-bold text-black mb-6 border-l-4 border-yellow-500 pl-2">CRUD OPERATIONS</h1>
+    <div class="mb-4">
+        <img
+            src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=1921&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="person"
+            class="w-24 h-24 rounded-full border-4 border-gray-200"
+        />
+    </div>
+    <h6 class="text-lg font-semibold text-black">Employee</h6>
+    
+    <p class="text-sm text-yellow-500 mb-6">{{isAdmin ? 'Admin' : 'User'}}</p>
+    <div class="w-full space-y-4">
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100" 
+            [ngClass]="{'bg-yellow-500 text-white' : activeButton === 'home' , 'text-black' : activeButton!=='home'}"
+            (click)="setActiveButton('home')">
+            <span class="material-icons mr-2">home</span> Home
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'add', 'text-black': activeButton !== 'add'}"
+            (click)="setActiveButton('add')"
+            (click)="addEmployee()">
+
+            <span class="material-icons mr-2">add</span> Add Employee
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'view', 'text-black': activeButton !== 'view'}"
+            (click)="setActiveButton('view')">
+            <span class="material-icons mr-2">visibility</span> View Employee
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'settings', 'text-black': activeButton !== 'settings'}"
+            (click)="setActiveButton('settings')">
+            <span class="material-icons mr-2">settings</span> Settings
+        </button>
+    </div>
+    <div class="mt-auto">
+        <button
+            class="flex items-center py-2 px-4 text-black font-medium rounded-lg hover:bg-yellow-500 mb-24"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'logout', 'text-black': activeButton !== 'logout'}"
+            (click)="logout()">
+            <span class="material-icons mr-2">logout</span> Logout
+        </button>
+    </div>
+</div> -->
+
+
+
+<!-- <div class="bg-[#f8f1e7] w-64 sm:w-48 md:w-56 lg:w-64 h-full sm:h-auto px-6 py-8 flex flex-col items-center">
+    <h1 class="text-lg font-bold text-black mb-6 border-l-4 border-yellow-500 pl-2 text-center">
+        CRUD OPERATIONS
+    </h1>
+    <div class="mb-4">
+        <img
+            src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=1921&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="person"
+            class="w-24 h-24 rounded-full border-4 border-gray-200"
+        />
+    </div>
+    <h6 class="text-lg font-semibold text-black text-center">Employee</h6>
+
+    <p class="text-sm text-yellow-500 mb-6 text-center">{{isAdmin ? 'Admin' : 'User'}}</p>
+    <div class="w-full space-y-4">
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'home', 'text-black': activeButton !== 'home'}"
+            (click)="setActiveButton('home')">
+            <span class="material-icons mr-2">home</span> Home
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'add', 'text-black': activeButton !== 'add'}"
+            (click)="setActiveButton('add')"
+            (click)="addEmployee()">
+            <span class="material-icons mr-2">add</span> Add Employee
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'view', 'text-black': activeButton !== 'view'}"
+            (click)="setActiveButton('view')">
+            <span class="material-icons mr-2">visibility</span> View Employee
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'settings', 'text-black': activeButton !== 'settings'}"
+            (click)="setActiveButton('settings')">
+            <span class="material-icons mr-2">settings</span> Settings
+        </button>
+    </div>
+    <div class="mt-auto">
+        <button
+            class="flex items-center py-2 px-4 text-black font-medium rounded-lg hover:bg-yellow-500 mb-24"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'logout', 'text-black': activeButton !== 'logout'}"
+            (click)="logout()">
+            <span class="material-icons mr-2">logout</span> Logout
+        </button>
+    </div>
+</div>
+
+<style>
+@media (max-width: 768px) {
+    div {
+        width: 100%;
+        height: auto;
+        padding: 4px;
+    }
+
+    img {
+        width: 20%;
+        height: auto;
+    }
+
+    button {
+        padding: 6px;
+    }
+}
+</style>
+ -->
+
+
+ <div class="bg-[#f8f1e7] w-64 sm:w-48 md:w-56 lg:w-64 h-[112vh] sm:h-auto px-6 py-8 flex flex-col items-center">
+    <h1 class="text-lg font-bold text-black mb-6 border-l-4 border-yellow-500 pl-2 text-center hidden sm:block">
+        EMS
+    </h1>
+    <div class="mb-4">
+        <img
+            src="https://media.istockphoto.com/id/1027250644/photo/one-cheerful-indian-businessman-in-front-of-office-building-stock-image.jpg?s=612x612&w=0&k=20&c=FIkIAPqT7C8beZVX8v--SUg0L6lOkEfIV2v0Ua4HkKE="
+            alt="person"
+            class="w-24 h-24 rounded-full border-4 border-gray-200"
+        />
+    </div>
+    <h6 class="text-lg font-semibold text-black text-center hidden sm:block">Employee</h6>
+
+    <p class="text-sm text-yellow-500 mb-6 text-center hidden sm:block">{{isAdmin ? 'Admin' : 'User'}}</p>
+    <div class="w-full space-y-4">
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'home', 'text-black': activeButton !== 'home'}"
+            (click)="setActiveButton('home')">
+            <span class="material-icons mr-2">home</span>
+            <span class="hidden sm:inline">Home</span>
+        </button>
+        <!-- <button
+            class="flex items-center w-full py-2 px-4 bg-yellow-500 text-white font-medium rounded-lg hover:bg-yellow-600"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'add', 'text-black': activeButton !== 'add'}"
+            (click)="setActiveButton('add')"
+            (click)="addEmployee()">
+            <span class="material-icons mr-2">add</span>
+            <span class="hidden sm:inline">Add Employee</span>
+        </button> -->
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'view', 'text-black': activeButton !== 'view'}"
+            (click)="setActiveButton('view')">
+            <span class="material-icons mr-2">visibility</span>
+            <span class="hidden sm:inline">View Employee</span>
+        </button>
+        <button
+            class="flex items-center w-full py-2 px-4 text-black font-medium rounded-lg hover:bg-gray-100"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'settings', 'text-black': activeButton !== 'settings'}"
+            (click)="setActiveButton('settings')">
+            <span class="material-icons mr-2">settings</span>
+            <span class="hidden sm:inline">Settings</span>
+        </button>
+    </div>
+    <div class="mt-auto">
+        <button
+            class="flex items-center py-2 px-4 text-black font-medium rounded-lg hover:bg-yellow-500 mb-24"
+            [ngClass]="{'bg-yellow-500 text-white': activeButton === 'logout', 'text-black': activeButton !== 'logout'}"
+            (click)="logout()">
+            <span class="material-icons mr-2">logout</span>
+            <span class="hidden sm:inline">Logout</span>
+        </button>
+    </div>
+</div>
+<style>
+    @media (max-width: 640px) {
+        .sidebar-btn span:last-child {
+            display: none;
+        }
+        .sidebar-btn {
+            justify-content: center;
+        }
+    }
+</style>

@@ -1,0 +1,43 @@
+<!-- <div class="flex flex-col justify-center items-center p-6 bg-white rounded-lg shadow-lg max-w-sm">
+    <h1 mat-dialog-title class="font-bold text-2xl text-red-600 mb-4">Confirm !!</h1>
+    <div mat-dialog-content class="text-center mb-6">
+      <p class="font-semibold text-gray-700">{{ data.message }}</p>
+    </div>
+    <div mat-dialog-actions class="flex justify-center gap-4">
+      <button mat-button (click)="onCancel()" 
+              class="bg-red-600 text-white font-semibold h-10 w-28 rounded-md px-4 py-2 hover:bg-red-700 transition duration-200">
+        Cancel
+      </button>
+      <button mat-button (click)="onConfirm()" 
+              class="bg-green-600 text-white font-semibold h-10 w-28 rounded-md px-4 py-2 hover:bg-green-700 transition duration-200">
+        Confirm
+      </button>
+    </div>
+  </div>
+   -->
+
+
+
+
+   <div class="flex flex-col justify-center items-center p-4 bg-white rounded-lg shadow-md max-w-xs">
+    <h1 mat-dialog-title class="font-semibold text-lg mb-2 text-center text-black">
+      Confirmation
+    </h1>
+    <div mat-dialog-content class="text-center mb-4">
+      <p class="text-sm text-gray-800">{{ data.message }}</p>
+    </div>
+    <hr class="border-t border-gray-300 my-2 w-full">
+    <div mat-dialog-actions class="flex justify-between w-full px-6">
+      <button mat-button (click)="onCancel()" 
+              class="text-blue-500 text-base font-medium hover:underline focus:outline-none">
+        Cancel
+      </button>
+      <div class="border-l border-gray-300 h-10"></div>
+      <button mat-button (click)="onConfirm()" 
+              class="text-blue-500 text-base font-medium hover:underline focus:outline-none ">
+        Ok
+      </button>
+    </div>
+  </div>
+  
+  

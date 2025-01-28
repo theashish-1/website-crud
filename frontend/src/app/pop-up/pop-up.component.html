@@ -1,0 +1,42 @@
+
+  <div class="bg-white rounded-lg shadow-lg max-w-sm mx-auto mt-8 p-6 pb-5 mb-8 w-80">
+    <h1 class="text-2xl font-semibold text-center text-gray-800">Employee Details</h1>
+    <p class="text-center text-gray-600">{{date}}</p>
+    <hr class="border-t border-yellow-500 my-4">
+  
+    <div class="space-y-4">
+      <div class="flex justify-between items-center">
+        <p class="text-lg">ID:</p>
+        <span class="font-medium">{{ data.employee.id }}</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="text-lg">Name:</p>
+        <span class="font-medium">{{ data.employee.firstName }} {{ data.employee.lastName }}</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="text-lg">Email:</p>
+        <span class="font-medium">{{ data.employee.email }}</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="text-lg">Salary:</p>
+        <span class="font-medium">{{ data.employee.salary }}</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="text-lg">DOB:</p>
+        <span class="font-medium">{{ data.employee.dateOfBirth }}</span>
+      </div>
+      <div class="flex justify-between items-center">
+        <p class="text-lg">Department:</p>
+        <span class="font-medium">{{ data.employee.departmentName }}</span>
+      </div>
+    </div>
+  
+    <div class="mt-6 flex justify-center">
+      <button mat-button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md transition duration-200" (click)="closeDialog()">Close</button>
+    </div>
+  </div>
+  
+
+
+
+  
